@@ -1,24 +1,24 @@
 import mongoose from "mongoose"
 
 const productSchema = new mongoose.Schema({
-    ProductName: {
+    productName: {
         type: String,
         required: true
     },
-    Price: {
+    price: {
         type: Number,
         required: true
     },
-    InStock: {
+    inStock: {
         type: Boolean,
         default: true,
         required: true
     },
-    Category: {
+    category: {
         type: String,
         required: true
     }
 },{timestamps: true})
 
 
-export const product = mongoose.model("Product", productSchema)
+export const Product = mongoose.model("Product", productSchema)
