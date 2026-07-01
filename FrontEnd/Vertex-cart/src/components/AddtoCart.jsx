@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { useLocation } from "react-router-dom"
+
 
 const AddtoCart = () => {
   const [cartList, setcartList] = useState([])
@@ -8,7 +8,6 @@ const AddtoCart = () => {
   
   const products = JSON.parse(localStorage.getItem("Products"))
   // console.log(`Products came to add to cart ${products.productName}`)
-  // const location = useLocation()
 
   const deleteProduct = (product) => {
     console.log(`Deleted Product ${product.productName}`)
@@ -69,8 +68,8 @@ const AddtoCart = () => {
               (cartList.map((Product, index) => {
                 return <tr className="bg-gray-200"  key={index}>
                   <td className="p-4  text-center">{Product.productName}</td>
-                  <td className="p-4 text-center">{Product.productPrice}</td>
-                  <td className="p-4 text-center">{Product.Category}</td>
+                  <td className="p-4 text-center">{Product.price}</td>
+                  <td className="p-4 text-center">{Product.category}</td>
                   <td className="p-3"><div className="flex justify-center">
                       <button key={index} onClick={() => deleteProduct(Product)} className="flex justify-center bg-red-300 px-4 py-2 rounded-md cursor-pointer">Delete</button>
                     </div></td>
