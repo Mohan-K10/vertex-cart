@@ -1,18 +1,21 @@
 import { Product } from "../models/product.models.js";
 
 export const createProduct = async (req, res) => {
-    const { ProductName, Price, InStock, Category } =  req.body;
-    console.log("Product Name: ", ProductName);
-    console.log("Product Price: ", Price);
-    console.log("Product Stock: ", InStock);
-    console.log("Product Category: ", Category);
+    const { productName, price, inStock, category } =  req.body;
 
-    const product = await Product.create({
-        productName: ProductName,
-        price: Price,
-        inStock: InStock,
-        category: Category
-    })
+    // console.log("Product Name: ", productName);
+    // console.log("Product price: ", price);
+    // console.log("Product Stock: ", inStock);
+    // console.log("Product category: ", category);
+
+    // const product = await Product.create({
+    //     productName: productName,
+    //     price: price,
+    //     inStock: inStock,
+    //     category: category
+    // })
+
+    const product = await Product.create(req.body)
     console.log(`Product Created:  ${product}`)
     res.status(201).json({message: "Product created"})
 }
