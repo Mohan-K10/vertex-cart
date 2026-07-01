@@ -16,6 +16,14 @@ const AddProduct = ({AllProducts}) => {
     const handleSubmit = () => {
         AllProducts((list)=>[...list, newProduct])
         console.log("data passed")
+
+        // Send Product data to backend
+        await fetch("http://localhost:5000/api/product", {
+            method: "POST",
+            headers: { "Content-type" : "application/json" },
+            body: JSON.stringify({ productName, productPrice, Category })
+        })
+
         setproductName("")
         setProductPrice("")
         setCategory("")
