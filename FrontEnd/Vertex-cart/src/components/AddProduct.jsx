@@ -2,26 +2,35 @@ import React from 'react'
 import { useState } from 'react'
 
 
-const AddProduct = ({AllProducts}) => {
+const AddProduct = ({ AllProducts }) => {
     const [productName, setproductName] = useState("")
     const [productPrice, setProductPrice] = useState("")
     const [Category, setCategory] = useState("")
 
     const newProduct = {
-        productName, 
+        productName,
         productPrice,
         Category
     }
 
-    const handleSubmit = () => {
-        AllProducts((list)=>[...list, newProduct])
+    const handleSubmit = async () => {
+        AllProducts((list) => [...list, newProduct])
         console.log("data passed")
 
         // Send Product data to backend
-        await fetch("http://localhost:5000/api/product", {
+        await fetch("http://localhost:5000/api/product/new", {
+            // POST -> Sending data 
             method: "POST",
-            headers: { "Content-type" : "application/json" },
-            body: JSON.stringify({ productName, productPrice, Category })
+            // Request is Expecting JSON format
+            headers: { "Content-type": "application/json" },
+
+            // Key names should match the names which are declared in mongoose schema. Schema will expect data which match the key name
+            body: JSON.stringify({
+                productName: productName,
+                price: productPrice,
+                inStock: true,
+                category: Category
+            })
         })
 
         setproductName("")
